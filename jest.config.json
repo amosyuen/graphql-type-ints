@@ -1,0 +1,6 @@
+{
+  "testEnvironment": "node",
+  "modulePaths": ["src"],
+  "modulePathIgnorePatterns": ["__mocks__", "dist"],
+  "testPathIgnorePatterns": ["__mocks__", "dist"]
+}
