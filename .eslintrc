@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb-base", "plugin:jest/recommended", "prettier"],
+  "plugins": ["babel", "import", "jest", "json", "node", "promise"],
+  "globals": {
+    "BigInt": false
+  },
+  "rules": {
+    "curly": ["error", "all"],
+    "func-style": ["error", "expression"],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/__mocks__/**/*.js", "**/__tests__/**/*.js", "**/*.test.*js"]
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+    "no-continue": "off",
+    "no-param-reassign": "off"
+  }
+}

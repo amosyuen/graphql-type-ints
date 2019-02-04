@@ -1,0 +1,5 @@
+.*
+*.log
+jest.config.json
+node_modules
+src
