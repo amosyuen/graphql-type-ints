@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "extends": ["airbnb-base", "plugin:jest/recommended", "prettier"],
   "plugins": ["babel", "import", "jest", "json", "node", "promise"],
   "globals": {

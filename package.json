@@ -1,20 +1,63 @@
 {
-  "name": "graphql-type-ints",
-  "version": "1.0.0",
-  "description": "Library for different graphql int types",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "yarn jest",
-    "lint": "eslint **/*.{js,json}",
-    "lint:fix": "yarn lint --fix & prettier --list-different --write **/*.{js,json}",
-    "build": "babel src -d dist",
-    "prepublishOnly": "yarn build"
+  "author": {
+    "name": "amosyuen",
+    "email": "amosyuen@gmail.com"
   },
+  "bugs": {
+    "url": "https://github.com/amosyuen/graphql-type-ints/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Library for different graphql int types",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/plugin-syntax-bigint": "^7.2.0",
+    "@babel/preset-env": "^7.16.11",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^26.0.0",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "graphql": "^16.3.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.7",
+    "lint-staged": "^12.3.2",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=10.4.0"
+  },
+  "homepage": "https://github.com/amosyuen/graphql-type-ints#readme",
   "husky": {
     "hooks": {
       "pre-commit": "yarn run lint-staged && yarn test"
     }
   },
+  "keywords": [
+    "bigint",
+    "graphql",
+    "int",
+    "int8",
+    "int16",
+    "int32",
+    "int64",
+    "long",
+    "number",
+    "scalar",
+    "type",
+    "uint",
+    "uint8",
+    "uint16",
+    "uint32",
+    "uint64",
+    "unsigned"
+  ],
+  "license": "MIT",
   "lint-staged": {
     "*.{js,json}": [
       "eslint --fix",
@@ -22,43 +65,25 @@
       "git add"
     ]
   },
-  "repository": "git@github.com:amosyuen/graphql-type-ints.git",
-  "author": "amosyuen <amosyuen@gmail.com>",
-  "license": "MIT",
-  "keywords": [
-    "bigint",
-    "graphql",
-    "int",
-    "number",
-    "scalar",
-    "type",
-    "unsigned"
-  ],
+  "main": "dist/index.js",
+  "name": "graphql-type-ints",
   "peerDependencies": {
     "graphql": ">=0.13.0"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/preset-env": "^7.3.1",
-    "eslint": "^5.13.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^4.0.0",
-    "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.2.2",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "graphql": "^14.1.1",
-    "jest": "^24.0.0"
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/amosyuen/graphql-type-ints.git"
   },
-  "engines": {
-    "node": ">=10.4.0"
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "yarn clean && yarn babel src -d dist --ignore 'src/**/__mocks__,src/**/__tests__,src/**/*.spec.js','src/**/*.test.js'",
+    "lint": "eslint **/*.{js,json}",
+    "lint:fix": "yarn lint --fix & prettier --list-different --write **/*.{js,json}",
+    "prepublishOnly": "yarn build",
+    "test": "yarn jest"
   },
+  "version": "1.0.2",
   "dependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint-plugin-json": "^1.3.2",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.3",
-    "prettier": "^1.16.4"
+    "graphql-type-ints": "^1.0.1"
   }
 }

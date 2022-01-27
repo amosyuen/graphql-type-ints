@@ -1,6 +1,6 @@
 import { GraphQLScalarType, Kind } from 'graphql';
 
-const createGraphQLStringIntType = (name, min, max, type) => {
+const createGraphQLStringIntTypeInternal = (name, min, max, type) => {
   if (
     (typeof max === 'number' && !Number.isSafeInteger(max)) ||
     (typeof min === 'number' && !Number.isSafeInteger(min))
@@ -13,7 +13,7 @@ const createGraphQLStringIntType = (name, min, max, type) => {
     max = BigInt(max);
     min = BigInt(min);
   } catch (err) {
-    throw new TypeError(`Invalid min bound "${min}" or max bound "${max}".`);
+    throw new Error(`Invalid min bound "${min}" or max bound "${max}".`);
   }
   if (min > max) {
     throw new Error(`Min bound "${min}" is greater than max bound "${max}".`);
@@ -64,4 +64,7 @@ const createGraphQLStringIntType = (name, min, max, type) => {
   });
 };
 
-export default createGraphQLStringIntType;
+export const createGraphQLBigIntType = (name, min, max) =>
+  createGraphQLStringIntTypeInternal(name, min, max, 'bigint');
+export const createGraphQLStringIntType = (name, min, max) =>
+  createGraphQLStringIntTypeInternal(name, min, max, 'string');

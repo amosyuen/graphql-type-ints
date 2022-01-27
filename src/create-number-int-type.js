@@ -4,7 +4,7 @@ const createGraphQLNumberIntType = (name, min, max) => {
   max = Number(max);
   min = Number(min);
   if (Number.isNaN(min) || Number.isNaN(max)) {
-    throw new TypeError(`Invalid min bound "${min}" or max bound "${max}".`);
+    throw new Error(`Invalid min bound "${min}" or max bound "${max}".`);
   }
   if (min > max) {
     throw new Error(`Min bound "${min}" is greater than max bound "${max}".`);

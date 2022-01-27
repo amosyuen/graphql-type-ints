@@ -5,7 +5,7 @@ const TestInt = createGraphQLNumberIntType('TestInt', -100, 100);
 describe('createGraphQLNumberIntType', () => {
   describe('constructor', () => {
     test('throws error for invalid min and max', () => {
-      expect(() => createGraphQLNumberIntType('TestInt', 'invalid', 'invalid')).toThrow(TypeError);
+      expect(() => createGraphQLNumberIntType('TestInt', 'invalid', 'invalid')).toThrow(Error);
     });
 
     test('throws error for min > max', () => {

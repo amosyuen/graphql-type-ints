@@ -1,33 +1,27 @@
-import createGraphQLStringIntType from '../create-string-int-type';
+import { createGraphQLBigIntType, createGraphQLStringIntType } from '../create-string-int-type';
 
 const MIN = BigInt(2) ** BigInt(52);
 const MAX = BigInt(2) ** BigInt(64);
 
-const TestBigInt = createGraphQLStringIntType('TestBigInt', MIN, MAX, 'bigint');
-const TestStringInt = createGraphQLStringIntType('TestStringInt', MIN, MAX, 'string');
+const TestBigInt = createGraphQLBigIntType('TestBigInt', MIN, MAX);
+const TestStringInt = createGraphQLStringIntType('TestStringInt', MIN, MAX);
 
-describe('createGraphQLStringIntType', () => {
+describe('createGraphQLBigIntType', () => {
   describe('constructor', () => {
     test('throws error for invalid min and max', () => {
-      expect(() => createGraphQLStringIntType('TestInt', 'invalid', 'invalid', 'bigint')).toThrow(
-        TypeError
-      );
+      expect(() => createGraphQLBigIntType('TestInt', 'invalid', 'invalid')).toThrow(Error);
     });
 
     test('throws error for not safe bound', () => {
-      expect(() => createGraphQLStringIntType('TestInt', 0, 2 ** 64, 'bigint')).toThrow(Error);
+      expect(() => createGraphQLBigIntType('TestInt', 0, 2 ** 64)).toThrow(Error);
     });
 
     test('throws error for min > max', () => {
-      expect(() => createGraphQLStringIntType('TestInt', 1, 0, 'bigint')).toThrow(Error);
-    });
-
-    test('throws error for invalid type', () => {
-      expect(() => createGraphQLStringIntType('TestInt', 1, 0)).toThrow(Error);
+      expect(() => createGraphQLBigIntType('TestInt', 1, 0)).toThrow(Error);
     });
 
     test('succeeds for valid bounds', () => {
-      createGraphQLStringIntType('TestInt', -MIN, MAX, 'bigint');
+      createGraphQLBigIntType('TestInt', -MIN, MAX);
     });
   });
 
@@ -79,27 +73,27 @@ describe('createGraphQLStringIntType', () => {
         expect(TestBigInt.parseValue(`${MAX}`)).toEqual(BigInt(MAX));
       });
     });
+  });
+});
 
-    describe('string', () => {
-      test('throws error for non integer value', () => {
-        expect(() => TestStringInt.parseValue('cow')).toThrow(TypeError);
-      });
+describe('createGraphQLStringIntType', () => {
+  test('throws error for non integer value', () => {
+    expect(() => TestStringInt.parseValue('cow')).toThrow(TypeError);
+  });
 
-      test('throws error for float value', () => {
-        expect(() => TestStringInt.parseValue(`${3.3}`)).toThrow(TypeError);
-      });
+  test('throws error for float value', () => {
+    expect(() => TestStringInt.parseValue(`${3.3}`)).toThrow(TypeError);
+  });
 
-      test('throws error for value out of bounds', () => {
-        expect(() => TestStringInt.parseValue(`${MIN - 1}`)).toThrow(TypeError);
-      });
+  test('throws error for value out of bounds', () => {
+    expect(() => TestStringInt.parseValue(`${MIN - 1}`)).toThrow(TypeError);
+  });
 
-      test('succeeds for number value in bounds', () => {
-        expect(TestStringInt.parseValue(Number(MIN))).toEqual(`${MIN}`);
-      });
+  test('succeeds for number value in bounds', () => {
+    expect(TestStringInt.parseValue(Number(MIN))).toEqual(`${MIN}`);
+  });
 
-      test('succeeds for string value in bounds', () => {
-        expect(TestStringInt.parseValue(`${MAX}`)).toEqual(`${MAX}`);
-      });
-    });
+  test('succeeds for string value in bounds', () => {
+    expect(TestStringInt.parseValue(`${MAX}`)).toEqual(`${MAX}`);
   });
 });
